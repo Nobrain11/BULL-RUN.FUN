@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐂 Bull Run — Discover Trending Solana Tokens</title>
+    <meta name="description" content="Track, discover, and promote trending Solana tokens. Real-time price tracking, milestone alerts, and promotion packages.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <span class="logo-icon">🐂</span>
+                <span class="logo-text">Bull Run</span>
+            </a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#trending">Trending</a></li>
+                <li><a href="#new">New</a></li>
+                <li><a href="#sponsored">Sponsored</a></li>
+                <li><a href="#submit">List Token</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-particles" id="heroParticles"></div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="pulse-dot"></span>
+                Live Solana Tracking
+            </div>
+            <h1 class="hero-title">
+                Discover <span class="gradient-text">Trending</span><br>
+                Solana Tokens
+            </h1>
+            <p class="hero-subtitle">
+                Track price milestones, vote on your favorites, and boost visibility with promotion packages. The ultimate platform for Solana traders.
+            </p>
+            <div class="hero-ctas">
+                <a href="#trending" class="btn btn-primary">
+                    <span>📈</span> View Trending
+                </a>
+                <a href="#submit" class="btn btn-secondary">
+                    <span>🚀</span> Submit Your Token
+                </a>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <div class="scroll-indicator"></div>
+        </div>
+    </section>
+
+    <section class="stats-bar">
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-icon">📊</div>
+                <div class="stat-value" id="statTokens">0</div>
+                <div class="stat-label">Total Tokens</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon">⚡</div>
+                <div class="stat-value" id="statActive">0</div>
+                <div class="stat-label">Active Tokens</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon">👍</div>
+                <div class="stat-value" id="statVotes">0</div>
+                <div class="stat-label">Total Votes</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon">💰</div>
+                <div class="stat-value" id="statRevenue">0</div>
+                <div class="stat-label">Revenue (SOL)</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section sponsored-section" id="sponsored">
+        <div class="section-header">
+            <div class="section-badge">⭐ Sponsored</div>
+            <h2 class="section-title">Featured Tokens</h2>
+            <p class="section-subtitle">Promoted by the community. Get your token featured.</p>
+        </div>
+        <div class="tokens-grid" id="sponsoredGrid">
+            <div class="loading-state">
+                <div class="spinner"></div>
+                <p>Loading featured tokens...</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section trending-section" id="trending">
+        <div class="section-header">
+            <div class="section-badge">🔥 Trending</div>
+            <h2 class="section-title">Top Performers</h2>
+            <p class="section-subtitle">Sorted by price multiplier. Sponsored tokens pinned first.</p>
+        </div>
+        <div class="filter-bar">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="sponsored">Sponsored</button>
+            <button class="filter-btn" data-filter="top10">Top 10</button>
+        </div>
+        <div class="tokens-grid" id="trendingGrid">
+            <div class="loading-state">
+                <div class="spinner"></div>
+                <p>Loading trending tokens...</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section new-section" id="new">
+        <div class="section-header">
+            <div class="section-badge">🆕 New</div>
+            <h2 class="section-title">Fresh Listings</h2>
+            <p class="section-subtitle">Recently added tokens. Be the first to discover.</p>
+        </div>
+        <div class="tokens-grid" id="newGrid">
+            <div class="loading-state">
+                <div class="spinner"></div>
+                <p>Loading new tokens...</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section submit-section" id="submit">
+        <div class="submit-container">
+            <div class="submit-content">
+                <div class="section-badge">🚀 Submit</div>
+                <h2 class="section-title">List Your Token</h2>
+                <p class="section-subtitle">Auto-listing via DexScreener. Fill in the details below.</p>
+                
+                <form class="submit-form" id="submitForm">
+                    <div class="form-group">
+                        <label for="tokenAddress">Token Address *</label>
+                        <input type="text" id="tokenAddress" name="address" placeholder="Enter Solana token address..." required>
+                        <span class="form-hint">32-44 character base58 address</span>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="tokenName">Token Name</label>
+                            <input type="text" id="tokenName" name="name" placeholder="e.g. Bull Run Token">
+                        </div>
+                        <div class="form-group">
+                            <label for="tokenSymbol">Symbol</label>
+                            <input type="text" id="tokenSymbol" name="symbol" placeholder="e.g. BULL">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="tokenDescription">Description</label>
+                        <textarea id="tokenDescription" name="description" rows="3" placeholder="Tell us about your token..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="tokenLogo">Logo URL</label>
+                        <input type="url" id="tokenLogo" name="logo_url" placeholder="https://...">
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="tokenTwitter">Twitter</label>
+                            <input type="url" id="tokenTwitter" name="twitter" placeholder="https://twitter.com/...">
+                        </div>
+                        <div class="form-group">
+                            <label for="tokenTelegram">Telegram</label>
+                            <input type="url" id="tokenTelegram" name="telegram" placeholder="https://t.me/...">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="tokenWebsite">Website</label>
+                        <input type="url" id="tokenWebsite" name="website" placeholder="https://...">
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <span>🚀</span> Submit Token
+                    </button>
+                </form>
+                
+                <div class="form-message" id="formMessage"></div>
+            </div>
+            
+            <div class="submit-promo">
+                <div class="promo-card">
+                    <div class="promo-icon">💎</div>
+                    <h3>Why List on Bull Run?</h3>
+                    <ul class="promo-list">
+                        <li><span>✅</span> Auto-listing from DexScreener</li>
+                        <li><span>📈</span> Real-time price tracking</li>
+                        <li><span>🔔</span> Milestone alerts (2x, 4x, 6x, 8x, 10x)</li>
+                        <li><span>👥</span> 267K+ Telegram audience</li>
+                        <li><span>💰</span> Promotion packages available</li>
+                        <li><span>🗳️</span> Community voting system</li>
+                    </ul>
+                    <div class="promo-cta">
+                        <a href="https://t.me/BullRunBot" target="_blank" class="btn btn-telegram">
+                            <span>📱</span> Open Telegram Bot
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section packages-section">
+        <div class="section-header">
+            <div class="section-badge">💰 Promote</div>
+            <h2 class="section-title">Promotion Packages</h2>
+            <p class="section-subtitle">Boost your token's visibility. Paid in SOL.</p>
+        </div>
+        <div class="packages-grid">
+            <div class="package-card">
+                <div class="package-badge">Popular</div>
+                <div class="package-icon">🥇</div>
+                <h3>Top 1-5</h3>
+                <div class="package-price">2.5 <span>SOL</span></div>
+                <ul class="package-features">
+                    <li>Position 1-5 in trending</li>
+                    <li>24-hour duration</li>
+                    <li>⭐ Sponsored badge</li>
+                    <li>Channel announcement</li>
+                </ul>
+                <a href="https://t.me/BullRunBot" target="_blank" class="btn btn-package">Select</a>
+            </div>
+            
+            <div class="package-card">
+                <div class="package-icon">🥈</div>
+                <h3>Top 6-10</h3>
+                <div class="package-price">1.0 <span>SOL</span></div>
+                <ul class="package-features">
+                    <li>Position 6-10 in trending</li>
+                    <li>24-hour duration</li>
+                    <li>⭐ Sponsored badge</li>
+                    <li>Channel announcement</li>
+                </ul>
+                <a href="https://t.me/BullRunBot" target="_blank" class="btn btn-package">Select</a>
+            </div>
+            
+            <div class="package-card featured">
+                <div class="package-badge">Best Value</div>
+                <div class="package-icon">📌</div>
+                <h3>Pinned</h3>
+                <div class="package-price">4.0 <span>SOL</span></div>
+                <ul class="package-features">
+                    <li>Featured on homepage</li>
+                    <li>72-hour duration</li>
+                    <li>📌 Pinned badge</li>
+                    <li>Priority placement</li>
+                </ul>
+                <a href="https://t.me/BullRunBot" target="_blank" class="btn btn-package">Select</a>
+            </div>
+            
+            <div class="package-card">
+                <div class="package-icon">⚡</div>
+                <h3>Boost</h3>
+                <div class="package-price">0.5 <span>SOL</span></div>
+                <ul class="package-features">
+                    <li>5-hour spotlight</li>
+                    <li>Highlighted card</li>
+                    <li>⚡ Boost badge</li>
+                    <li>Quick visibility</li>
+                </ul>
+                <a href="https://t.me/BullRunBot" target="_blank" class="btn btn-package">Select</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <span class="logo-icon">🐂</span>
+                <span class="logo-text">Bull Run</span>
+                <p>Discover Trending Solana Tokens</p>
+            </div>
+            <div class="footer-links">
+                <a href="#trending">Trending</a>
+                <a href="#new">New</a>
+                <a href="#sponsored">Sponsored</a>
+                <a href="#submit">List Token</a>
+            </div>
+            <div class="footer-social">
+                <a href="https://t.me/BullRunChannel" target="_blank" class="social-link">📱 Telegram</a>
+                <a href="https://twitter.com/BullRunApp" target="_blank" class="social-link">🐦 Twitter</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Bull Run. All rights reserved.</p>
+            <div class="footer-legal">
+                <a href="#">Terms</a>
+                <a href="#">Privacy</a>
+            </div>
+        </div>
+    </footer>
+
+    <div class="modal" id="tokenModal">
+        <div class="modal-overlay" id="modalOverlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">×</button>
+            <div class="modal-body" id="modalBody"></div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
