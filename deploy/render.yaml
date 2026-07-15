@@ -1,0 +1,59 @@
+services:
+  - type: web
+    name: bullrun-api
+    runtime: python
+    plan: starter
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: cd backend && gunicorn app:app --bind 0.0.0.0:$PORT --workers 4
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: bullrun-db
+          property: connectionString
+      - key: BOT_TOKEN
+        sync: false
+      - key: CHANNEL_ID
+        value: '@your_channel_username'
+      - key: ADMIN_USER_ID
+        sync: false
+      - key: WALLET_ADDRESS
+        value: CKcTpCNiohtJ4WdaHXXQURNnoMeCDC6qt21TXLaQK1VS
+      - key: API_URL
+        value: https://bullrun-api.onrender.com/api
+      - key: BIRDEYE_API_KEY
+        sync: false
+      - key: PYTHON_VERSION
+        value: 3.11.0
+    healthCheckPath: /api/health
+    autoDeploy: true
+
+  - type: worker
+    name: bullrun-bot
+    runtime: python
+    plan: starter
+    buildCommand: pip install -r bot/requirements.txt
+    startCommand: cd bot && python bot.py
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: bullrun-db
+          property: connectionString
+      - key: BOT_TOKEN
+        sync: false
+      - key: CHANNEL_ID
+        value: '@your_channel_username'
+      - key: ADMIN_USER_ID
+        sync: false
+      - key: WALLET_ADDRESS
+        value: CKcTpCNiohtJ4WdaHXXQURNnoMeCDC6qt21TXLaQK1VS
+      - key: API_URL
+        value: https://bullrun-api.onrender.com/api
+      - key: PYTHON_VERSION
+        value: 3.11.0
+    autoDeploy: true
+
+databases:
+  - name: bullrun-db
+    plan: starter
+    databaseName: bullrun
+    user: bullrun
