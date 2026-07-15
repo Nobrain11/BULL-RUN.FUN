@@ -629,7 +629,11 @@ def internal_error(error):
 
 # ─── INIT ───
 
+# Create tables on startup — runs both under `python app.py` and under
+# gunicorn (Render's production server), since gunicorn imports this
+# module directly and never hits the __main__ block below.
+with app.app_context():
+    db.create_all()
+
 if __name__ == '__main__':
-    with app.app_context():
-        db.create_all()
     app.run(host='0.0.0.0', port=int(os.getenv('PORT', 5000)), debug=False)
