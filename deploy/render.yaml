@@ -1,4 +1,8 @@
+# deploy/render.yaml
+# 🐂 Bull Run — Render Deployment Configuration
+
 services:
+  # Backend API Service
   - type: web
     name: bullrun-api
     runtime: python
@@ -27,6 +31,7 @@ services:
     healthCheckPath: /api/health
     autoDeploy: true
 
+  # Telegram Bot Service
   - type: worker
     name: bullrun-bot
     runtime: python
@@ -54,6 +59,6 @@ services:
 
 databases:
   - name: bullrun-db
-    plan: starter
+    plan: basic-256mb
     databaseName: bullrun
     user: bullrun
