@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #06080f;
+  color: #f5f6fa;
+  font-feature-settings: 'ss01', 'cv01';
+}
+
+::selection {
+  background: rgba(139, 92, 246, 0.35);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #06080f;
+}
+::-webkit-scrollbar-thumb {
+  background: #1c2438;
+  border-radius: 8px;
+}
+
+.signal-orb {
+  position: absolute;
+  width: 720px;
+  height: 720px;
+  border-radius: 9999px;
+  background: radial-gradient(circle at 30% 30%, rgba(139, 92, 246, 0.35), transparent 60%),
+    radial-gradient(circle at 70% 70%, rgba(62, 123, 250, 0.28), transparent 60%);
+  filter: blur(60px);
+  pointer-events: none;
+}
+
+.ticker-mask {
+  mask-image: linear-gradient(90deg, transparent 0%, black 6%, black 94%, transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 6%, black 94%, transparent 100%);
+}
+
+.glass {
+  background: rgba(14, 19, 34, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.card-glow:hover {
+  box-shadow: 0 0 0 1px rgba(139, 92, 246, 0.25), 0 20px 60px -20px rgba(139, 92, 246, 0.25);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
