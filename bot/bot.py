@@ -151,14 +151,9 @@ async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
             token_name = token.get('name', 'Unknown') if token else 'Unknown'
 
             await update.message.reply_text(
-                f"🚀 <b>Promote Token</b>
-
-"
-                f"Token: <code>{token_name}</code>
-"
-                f"Address: <code>{token_address}</code>
-
-"
+                f"🚀 <b>Promote Token</b>\n\n"
+                f"Token: <code>{token_name}</code>\n"
+                f"Address: <code>{token_address}</code>\n\n"
                 f"Select a promotion package:",
                 reply_markup=get_package_keyboard(),
                 parse_mode='HTML'
@@ -166,23 +161,13 @@ async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
             return SELECTING_PACKAGE
 
     welcome_text = (
-        f"🐂 <b>Welcome to Bull Run!</b>
-
-"
-        f"Discover and promote trending Solana tokens.
-
-"
-        f"<b>What you can do:</b>
-"
-        f"• 🚀 Submit tokens for listing
-"
-        f"• 📈 View trending tokens
-"
-        f"• 💎 Buy promotion packages
-"
-        f"• 🔔 Get milestone alerts
-
-"
+        f"🐂 <b>Welcome to Bull Run!</b>\n\n"
+        f"Discover and promote trending Solana tokens.\n\n"
+        f"<b>What you can do:</b>\n"
+        f"• 🚀 Submit tokens for listing\n"
+        f"• 📈 View trending tokens\n"
+        f"• 💎 Buy promotion packages\n"
+        f"• 🔔 Get milestone alerts\n\n"
         f"Choose an option below:"
     )
 
@@ -196,45 +181,23 @@ async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handle /help command"""
     help_text = (
-        "🐂 <b>Bull Run Help</b>
-
-"
-        "<b>Commands:</b>
-"
-        "/start — Main menu
-"
-        "/help — This message
-
-"
-        "<b>Promotion Packages:</b>
-"
-        "🥇 <b>Top 1-5</b> — 2.5 SOL (24h)
-"
-        "🥈 <b>Top 6-10</b> — 1.0 SOL (24h)
-"
-        "📌 <b>Pinned</b> — 4.0 SOL (72h)
-"
-        "⚡ <b>Boost</b> — 0.5 SOL (5h)
-
-"
-        "<b>How it works:</b>
-"
-        "1. Select a token to promote
-"
-        "2. Choose a package
-"
-        "3. Send SOL to the wallet
-"
-        "4. Click 'I've Paid'
-"
-        "5. Bot verifies and activates!
-
-"
-        "<b>Wallet:</b>
-"
-        f"<code>{WALLET_ADDRESS}</code>
-
-"
+        "🐂 <b>Bull Run Help</b>\n\n"
+        "<b>Commands:</b>\n"
+        "/start — Main menu\n"
+        "/help — This message\n\n"
+        "<b>Promotion Packages:</b>\n"
+        "🥇 <b>Top 1-5</b> — 2.5 SOL (24h)\n"
+        "🥈 <b>Top 6-10</b> — 1.0 SOL (24h)\n"
+        "📌 <b>Pinned</b> — 4.0 SOL (72h)\n"
+        "⚡ <b>Boost</b> — 0.5 SOL (5h)\n\n"
+        "<b>How it works:</b>\n"
+        "1. Select a token to promote\n"
+        "2. Choose a package\n"
+        "3. Send SOL to the wallet\n"
+        "4. Click 'I've Paid'\n"
+        "5. Bot verifies and activates!\n\n"
+        "<b>Wallet:</b>\n"
+        f"<code>{WALLET_ADDRESS}</code>\n\n"
         "Questions? Contact @BullRunSupport"
     )
 
@@ -254,17 +217,10 @@ async def handle_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if data == 'submit_token':
         context.user_data['step'] = 'awaiting_address'
         await query.edit_message_text(
-            "🚀 <b>Submit Your Token</b>
-
-"
-            "Please send me the Solana token address.
-"
-            "The bot will automatically fetch data from DexScreener.
-
-"
-            "Example: <code>EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v</code>
-
-"
+            "🚀 <b>Submit Your Token</b>\n\n"
+            "Please send me the Solana token address.\n"
+            "The bot will automatically fetch data from DexScreener.\n\n"
+            "Example: <code>EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v</code>\n\n"
             "Or click ◀️ Back to cancel.",
             reply_markup=InlineKeyboardMarkup([
                 [InlineKeyboardButton("◀️ Back", callback_data='back_to_menu')]
@@ -283,35 +239,19 @@ async def handle_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     elif data == 'help':
         help_text = (
-            "🐂 <b>Bull Run Help</b>
-
-"
-            "<b>Promotion Packages:</b>
-"
-            "🥇 <b>Top 1-5</b> — 2.5 SOL (24h)
-"
-            "🥈 <b>Top 6-10</b> — 1.0 SOL (24h)
-"
-            "📌 <b>Pinned</b> — 4.0 SOL (72h)
-"
-            "⚡ <b>Boost</b> — 0.5 SOL (5h)
-
-"
-            "<b>How it works:</b>
-"
-            "1. Select a token to promote
-"
-            "2. Choose a package
-"
-            "3. Send SOL to the wallet
-"
-            "4. Click 'I've Paid'
-"
-            "5. Bot verifies and activates!
-
-"
-            "<b>Wallet:</b>
-"
+            "🐂 <b>Bull Run Help</b>\n\n"
+            "<b>Promotion Packages:</b>\n"
+            "🥇 <b>Top 1-5</b> — 2.5 SOL (24h)\n"
+            "🥈 <b>Top 6-10</b> — 1.0 SOL (24h)\n"
+            "📌 <b>Pinned</b> — 4.0 SOL (72h)\n"
+            "⚡ <b>Boost</b> — 0.5 SOL (5h)\n\n"
+            "<b>How it works:</b>\n"
+            "1. Select a token to promote\n"
+            "2. Choose a package\n"
+            "3. Send SOL to the wallet\n"
+            "4. Click 'I've Paid'\n"
+            "5. Bot verifies and activates!\n\n"
+            "<b>Wallet:</b>\n"
             f"<code>{WALLET_ADDRESS}</code>"
         )
         await query.edit_message_text(
@@ -325,12 +265,8 @@ async def handle_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     elif data == 'back_to_menu':
         await query.edit_message_text(
-            "🐂 <b>Bull Run</b>
-
-"
-            "Discover and promote trending Solana tokens.
-
-"
+            "🐂 <b>Bull Run</b>\n\n"
+            "Discover and promote trending Solana tokens.\n\n"
             "Choose an option:",
             reply_markup=get_main_menu_keyboard(),
             parse_mode='HTML'
@@ -345,14 +281,9 @@ async def handle_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
         token_name = token.get('name', 'Unknown') if token else 'Unknown'
 
         await query.edit_message_text(
-            f"🚀 <b>Promote Token</b>
-
-"
-            f"Token: <code>{token_name}</code>
-"
-            f"Address: <code>{token_address}</code>
-
-"
+            f"🚀 <b>Promote Token</b>\n\n"
+            f"Token: <code>{token_name}</code>\n"
+            f"Address: <code>{token_address}</code>\n\n"
             f"Select a promotion package:",
             reply_markup=get_package_keyboard(),
             parse_mode='HTML'
@@ -371,26 +302,14 @@ async def handle_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
         token_name = token.get('name', 'Unknown') if token else 'Unknown'
 
         await query.edit_message_text(
-            f"💰 <b>Payment Required</b>
-
-"
-            f"Token: <code>{token_name}</code>
-"
-            f"Package: <b>{pkg_info['name']}</b>
-"
-            f"Price: <b>{pkg_info['price']} SOL</b>
-"
-            f"Duration: <b>{pkg_info['duration']} hours</b>
-
-"
-            f"<b>Send exactly {pkg_info['price']} SOL to:</b>
-"
-            f"<code>{WALLET_ADDRESS}</code>
-
-"
-            f"⚠️ <i>Make sure to send from the wallet you'll use for verification.</i>
-
-"
+            f"💰 <b>Payment Required</b>\n\n"
+            f"Token: <code>{token_name}</code>\n"
+            f"Package: <b>{pkg_info['name']}</b>\n"
+            f"Price: <b>{pkg_info['price']} SOL</b>\n"
+            f"Duration: <b>{pkg_info['duration']} hours</b>\n\n"
+            f"<b>Send exactly {pkg_info['price']} SOL to:</b>\n"
+            f"<code>{WALLET_ADDRESS}</code>\n\n"
+            f"⚠️ <i>Make sure to send from the wallet you'll use for verification.</i>\n\n"
             f"After sending, click 'I've Paid' below.",
             reply_markup=get_payment_keyboard(package),
             parse_mode='HTML'
@@ -414,14 +333,9 @@ async def handle_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
             token_name = token.get('name', 'Unknown') if token else 'Unknown'
 
             await query.edit_message_text(
-                f"🚀 <b>Promote Token</b>
-
-"
-                f"Token: <code>{token_name}</code>
-"
-                f"Address: <code>{token_address}</code>
-
-"
+                f"🚀 <b>Promote Token</b>\n\n"
+                f"Token: <code>{token_name}</code>\n"
+                f"Address: <code>{token_address}</code>\n\n"
                 f"Select a promotion package:",
                 reply_markup=get_package_keyboard(),
                 parse_mode='HTML'
@@ -449,9 +363,7 @@ async def show_trending(query, context):
 
         if not tokens:
             await query.edit_message_text(
-                "📈 No trending tokens found yet.
-
-"
+                "📈 No trending tokens found yet.\n\n"
                 "Submit your token to be the first!",
                 reply_markup=InlineKeyboardMarkup([
                     [InlineKeyboardButton("🚀 Submit Token", callback_data='submit_token')],
@@ -460,9 +372,7 @@ async def show_trending(query, context):
             )
             return
 
-        text = "📈 <b>Top 10 Trending Tokens</b>
-
-"
+        text = "📈 <b>Top 10 Trending Tokens</b>\n\n"
 
         for i, token in enumerate(tokens[:10], 1):
             mcap = format_number(token.get('market_cap', 0))
@@ -474,13 +384,9 @@ async def show_trending(query, context):
                 badge = " ⭐"
 
             text += (
-                f"{i}. <b>{token.get('name', 'Unknown')}</b>{badge}
-"
-                f"   💰 MCap: {mcap} | 📈 {mult:.2f}x | 👍 {votes}
-"
-                f"   <code>{token.get('address', '')}</code>
-
-"
+                f"{i}. <b>{token.get('name', 'Unknown')}</b>{badge}\n"
+                f"   💰 MCap: {mcap} | 📈 {mult:.2f}x | 👍 {votes}\n"
+                f"   <code>{token.get('address', '')}</code>\n\n"
             )
 
         # Add promote buttons for each token
@@ -528,12 +434,8 @@ async def show_promotions(query, context, user_id):
 
         if not promotions:
             await query.edit_message_text(
-                "💎 <b>My Promotions</b>
-
-"
-                "You don't have any active promotions yet.
-
-"
+                "💎 <b>My Promotions</b>\n\n"
+                "You don't have any active promotions yet.\n\n"
                 "Promote your token to see it here!",
                 reply_markup=InlineKeyboardMarkup([
                     [InlineKeyboardButton("🚀 Submit Token", callback_data='submit_token')],
@@ -543,9 +445,7 @@ async def show_promotions(query, context, user_id):
             )
             return
 
-        text = "💎 <b>My Promotions</b>
-
-"
+        text = "💎 <b>My Promotions</b>\n\n"
 
         for promo in promotions:
             status = "🟢 Active" if promo.get('is_active') else "🔴 Expired"
@@ -553,17 +453,11 @@ async def show_promotions(query, context, user_id):
             pkg_name = pkg.get('name', promo.get('package', 'Unknown'))
 
             text += (
-                f"<b>{pkg_name}</b> — {status}
-"
-                f"Token: <code>{promo.get('token_address', '')[:20]}...</code>
-"
-                f"Price: {promo.get('price', 0)} SOL
-"
-                f"Started: {promo.get('start_time', 'N/A')[:10]}
-"
-                f"Expires: {promo.get('end_time', 'N/A')[:10]}
-
-"
+                f"<b>{pkg_name}</b> — {status}\n"
+                f"Token: <code>{promo.get('token_address', '')[:20]}...</code>\n"
+                f"Price: {promo.get('price', 0)} SOL\n"
+                f"Started: {promo.get('start_time', 'N/A')[:10]}\n"
+                f"Expires: {promo.get('end_time', 'N/A')[:10]}\n\n"
             )
 
         await query.edit_message_text(
@@ -598,14 +492,9 @@ async def handle_payment_confirmation(query, context, package):
 
     # Ask for wallet address used for payment
     await query.edit_message_text(
-        "⏳ <b>Verifying Payment...</b>
-
-"
-        "Please send the wallet address you used to send SOL from.
-"
-        "The bot will check for the transaction on Solscan.
-
-"
+        "⏳ <b>Verifying Payment...</b>\n\n"
+        "Please send the wallet address you used to send SOL from.\n"
+        "The bot will check for the transaction on Solscan.\n\n"
         "Example: <code>YourWalletAddressHere</code>",
         reply_markup=InlineKeyboardMarkup([
             [InlineKeyboardButton("◀️ Cancel", callback_data='back_to_packages')]
@@ -646,21 +535,12 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         if not tx_signature:
             await update.message.reply_text(
-                "❌ <b>Payment Not Found</b>
-
-"
-                "No matching transaction found in the last 10 minutes.
-
-"
-                "Please make sure:
-"
-                "• You sent exactly the required amount
-"
-                "• You sent to the correct wallet
-"
-                "• The transaction is confirmed on Solana
-
-"
+                "❌ <b>Payment Not Found</b>\n\n"
+                "No matching transaction found in the last 10 minutes.\n\n"
+                "Please make sure:\n"
+                "• You sent exactly the required amount\n"
+                "• You sent to the correct wallet\n"
+                "• The transaction is confirmed on Solana\n\n"
                 "Try again or contact support.",
                 reply_markup=InlineKeyboardMarkup([
                     [InlineKeyboardButton("🔄 Try Again", callback_data=f'confirm_payment_{package}')],
@@ -689,16 +569,10 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 token_symbol = token.get('symbol', 'UNKNOWN') if token else 'UNKNOWN'
 
                 channel_text = (
-                    f"⭐ <b>New Sponsored Token!</b>
-
-"
-                    f"🚀 <b>{token_name}</b> (${token_symbol})
-"
-                    f"📦 Package: {pkg_info['name']}
-"
-                    f"💰 {pkg_info['price']} SOL paid
-
-"
+                    f"⭐ <b>New Sponsored Token!</b>\n\n"
+                    f"🚀 <b>{token_name}</b> (${token_symbol})\n"
+                    f"📦 Package: {pkg_info['name']}\n"
+                    f"💰 {pkg_info['price']} SOL paid\n\n"
                     f"Check it out on Bull Run!"
                 )
 
@@ -712,19 +586,11 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     logger.error(f"Channel announcement error: {e}")
 
                 await update.message.reply_text(
-                    f"✅ <b>Payment Verified!</b>
-
-"
-                    f"Your {pkg_info['name']} promotion is now active.
-"
-                    f"Token: <code>{token_name}</code>
-"
-                    f"Expires: {result.get('expires_at', 'N/A')[:10]}
-
-"
-                    f"Transaction: <code>{tx_signature[:20]}...</code>
-
-"
+                    f"✅ <b>Payment Verified!</b>\n\n"
+                    f"Your {pkg_info['name']} promotion is now active.\n"
+                    f"Token: <code>{token_name}</code>\n"
+                    f"Expires: {result.get('expires_at', 'N/A')[:10]}\n\n"
+                    f"Transaction: <code>{tx_signature[:20]}...</code>\n\n"
                     f"Thank you for using Bull Run! 🐂",
                     reply_markup=get_main_menu_keyboard(),
                     parse_mode='HTML'
@@ -755,9 +621,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         if not is_valid_solana_address(address):
             await update.message.reply_text(
-                "❌ Invalid Solana address. Please check and try again.
-
-"
+                "❌ Invalid Solana address. Please check and try again.\n\n"
                 "A valid address is 32-44 characters long and uses base58 characters.",
                 reply_markup=InlineKeyboardMarkup([
                     [InlineKeyboardButton("◀️ Back", callback_data='back_to_menu')]
@@ -779,21 +643,12 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 # Auto-listed
                 token = result.get('token', {})
                 await update.message.reply_text(
-                    f"✅ <b>Token Listed Successfully!</b>
-
-"
-                    f"Name: <b>{token.get('name', 'Unknown')}</b>
-"
-                    f"Symbol: <b>${token.get('symbol', 'UNKNOWN')}</b>
-"
-                    f"Price: {format_number(token.get('price', 0))}
-"
-                    f"Market Cap: {format_number(token.get('market_cap', 0))}
-
-"
-                    f"Your token is now live on Bull Run! 🎉
-
-"
+                    f"✅ <b>Token Listed Successfully!</b>\n\n"
+                    f"Name: <b>{token.get('name', 'Unknown')}</b>\n"
+                    f"Symbol: <b>${token.get('symbol', 'UNKNOWN')}</b>\n"
+                    f"Price: {format_number(token.get('price', 0))}\n"
+                    f"Market Cap: {format_number(token.get('market_cap', 0))}\n\n"
+                    f"Your token is now live on Bull Run! 🎉\n\n"
                     f"Want to boost visibility? Promote it now!",
                     reply_markup=InlineKeyboardMarkup([
                         [InlineKeyboardButton("💰 Promote This Token", callback_data=f"promote_{address}")],
@@ -807,18 +662,11 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
             elif resp.status_code == 202:
                 # Pending review
                 await update.message.reply_text(
-                    f"⏳ <b>Token Submitted for Review</b>
-
-"
-                    f"Address: <code>{address}</code>
-"
-                    f"Request ID: #{result.get('request_id', 'N/A')}
-
-"
+                    f"⏳ <b>Token Submitted for Review</b>\n\n"
+                    f"Address: <code>{address}</code>\n"
+                    f"Request ID: #{result.get('request_id', 'N/A')}\n\n"
                     f"We couldn't auto-fetch data from DexScreener. "
-                    f"Your token will be reviewed and listed shortly.
-
-"
+                    f"Your token will be reviewed and listed shortly.\n\n"
                     f"You'll be notified once it's approved!",
                     reply_markup=InlineKeyboardMarkup([
                         [InlineKeyboardButton("◀️ Main Menu", callback_data='back_to_menu')]
@@ -832,14 +680,9 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 # Already exists
                 token = result.get('token', {})
                 await update.message.reply_text(
-                    f"ℹ️ <b>Token Already Listed!</b>
-
-"
-                    f"Name: <b>{token.get('name', 'Unknown')}</b>
-"
-                    f"Symbol: <b>${token.get('symbol', 'UNKNOWN')}</b>
-
-"
+                    f"ℹ️ <b>Token Already Listed!</b>\n\n"
+                    f"Name: <b>{token.get('name', 'Unknown')}</b>\n"
+                    f"Symbol: <b>${token.get('symbol', 'UNKNOWN')}</b>\n\n"
                     f"This token is already on Bull Run.",
                     reply_markup=InlineKeyboardMarkup([
                         [InlineKeyboardButton("💰 Promote This Token", callback_data=f"promote_{address}")],
@@ -906,16 +749,10 @@ async def check_milestones(context: ContextTypes.DEFAULT_TYPE):
                 emoji = "💎"
 
             message = (
-                f"{emoji} <b>{token_name} HIT {int(multiplier)}x!</b>
-
-"
-                f"💰 MCap: {mcap}
-"
-                f"📈 Volume: {volume}
-"
-                f"🔗 <code>{address}</code>
-
-"
+                f"{emoji} <b>{token_name} HIT {int(multiplier)}x!</b>\n\n"
+                f"💰 MCap: {mcap}\n"
+                f"📈 Volume: {volume}\n"
+                f"🔗 <code>{address}</code>\n\n"
                 f"Track on Bull Run"
             )
 
